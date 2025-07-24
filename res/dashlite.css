@@ -5842,7 +5842,7 @@ input[type="radio"]:checked ~ label { cursor: default; }
 
 .ni-chevron-left:before { content: ""; }
 
-.ni-chevron-right:before { content: ""; }
+.ni-chevron-right:before { content: "res/Nioicon.ttf"; }
 
 .ni-chevron-up:before { content: ""; }
 
@@ -7854,7 +7854,7 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu-toggle { position: relative; }
 
-.nk-menu-toggle:after { position: absolute; font-family: "Nioicon"; top: 50%; right: 1.25rem; content: ""; transform: translateY(-50%); font-size: 1rem; color: #8094ae; transition: transform .3s, color .1s; }
+.nk-menu-toggle:after { position: absolute; font-family: "Nioicon"; top: 50%; right: 1.25rem; content: "res/Nioicon.ttf"; transform: translateY(-50%); font-size: 1rem; color: #8094ae; transition: transform .3s, color .1s; }
 
 .is-dark .nk-menu-toggle:after, .is-theme .nk-menu-toggle:after { color: rgba(255, 255, 255, 0.4); }
 
@@ -7903,7 +7903,7 @@ body.nav-shown { overflow: hidden; }
   .nk-menu .nk-menu-sub .nk-menu-sub { margin: 0; margin-top: 6px; margin-left: -0.75rem; left: 100%; top: -9px; padding: .5rem 0; border: 1px solid #e5e9f2; }
   .nk-menu .nk-menu-sub .nk-menu-sub .nk-menu-link { padding-left: 1.5rem; }
   .nk-menu .nk-menu-sub .nk-menu-item:hover > a { background: #f5f6fa; }
-  .nk-menu .nk-menu-sub .nk-menu-toggle:after { content: ""; }
+  .nk-menu .nk-menu-sub .nk-menu-toggle:after { content: "res/Nioicon.ttf"; }
   .is-dark .nk-menu > li > .nk-menu-link:before, .is-theme .nk-menu > li > .nk-menu-link:before { border-radius: 0; bottom: auto; top: 0; }
   .is-dark .nk-menu > li > .nk-menu-link { color: #9faec2; }
   .is-dark .nk-menu > li > .nk-menu-link.nk-menu-toggle:after { color: rgba(128, 148, 174, 0.7); }
@@ -8362,7 +8362,7 @@ li { list-style: none; }
 
 .link-list-menu a { position: relative; display: flex; align-items: center; padding: .75rem 1.25rem; font-weight: 500; color: #526484; transition: all .4s; line-height: 1.3rem; }
 
-.link-list-menu a:after { position: absolute; font-size: 1rem; font-family: "Nioicon"; content: ""; right: 1.25rem; color: #8094ae; transition: .3s ease; }
+.link-list-menu a:after { position: absolute; font-size: 1rem; font-family: "Nioicon"; content: "res/Nioicon.ttf"; right: 1.25rem; color: #8094ae; transition: .3s ease; }
 
 .link-list-menu a .icon { font-size: 1.125rem; width: 1.75rem; opacity: .8; color: #8094ae; margin-top: -2px; }
 
