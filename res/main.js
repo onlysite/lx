@@ -206,44 +206,6 @@ function parseIpInfo(text) {
 }
 
 
-function ipgb() {
-    if (!visibl) {
-        setTimeout(ipgb, refresh_lay);
-        return;
-    }
-
-    fetch('https://2025.ip138.com/ip.asp', {
-        mode: 'no-cors'  // 尝试绕过CORS限制
-    })
-    .then(response => response.text())
-    .then(html => {
-        // 从HTML中提取IP信息
-        const ipMatch = html.match(/IP地址是：\[(.+?)\]/);
-        const locMatch = html.match(/来自：(.+?)</);
-        
-        if (!ipMatch || !locMatch) throw new Error('数据解析失败');
-        
-        const currentIp = ipMatch[1];
-        const location = locMatch[1].trim();
-        
-        const tag = document.getElementById("ipgb");
-        tag.innerText = `${currentIp} ${location}`;
-        
-        // IP变化检测
-        if (gbip && currentIp !== gbip) {
-            tag.style.color = '';
-            ckip(currentIp, tag);
-        }
-        gbip = currentIp;
-    })
-    .catch(error => {
-        console.error("IP获取失败:", error);
-        document.getElementById("ipgb").innerText = "IP获取失败";
-    })
-    .finally(() => {
-        setTimeout(ipgb, refresh_lay);
-    });
-}
 
 function laycn() {
     if (visibl) {
@@ -301,7 +263,6 @@ function layyoutube() {
 
 
 ipcn()
-ipgb()
 laycn()
 laygb()
 laygithub()
