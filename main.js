@@ -205,29 +205,6 @@ function parseIpInfo(text) {
     };
 }
 
-var gbip = ""
-
-function ipgb() {
-    if (visibl) {
-        fetch('https://ipinfo.io/json')
-            .then(response => response.json())
-            .then(data => {
-                var tag = document.getElementById("ipgb");
-                tag.innerText = data['ip'] + ' ' + data['country'] + ' ' + data['region'] + ' ' + data['city'] + ' ' + data['hostname'];
-                
-                if (data['ip'] !== gbip) {
-                    tag.style.color = '';
-                    ckip(data['ip'], tag);
-                }
-                gbip = data['ip'];
-            })
-            .catch(error => {
-                console.error("IP 获取失败:", error);
-            });
-    }
-    setTimeout(ipgb, refresh_lay);
-}
-
 
 
 function laycn() {
@@ -286,7 +263,6 @@ function layyoutube() {
 
 
 ipcn()
-ipgb()
 laycn()
 laygb()
 laygithub()
