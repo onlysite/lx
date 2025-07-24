@@ -7736,7 +7736,7 @@ body.nav-shown { overflow: hidden; }
 @keyframes overlay-fade-in { 0% { opacity: 0; }
   100% { opacity: 1; } }
 
-.nk-header-menu { position: fixed; top: 0; left: 0; transform: translateX(-100%); width: 280px; height: 100vh; max-height: 100vh; z-index: 999; background: #fff; }
+.nk-header-menu { position: fixed; top: 0; left: 0; transform: translateX(-100%); width: 200px; height: 100vh; max-height: 100vh; z-index: 999; background: #fff; }
 
 .nk-header-menu-inner { overflow: auto; max-height: 100%; min-height: 100%; }
 
