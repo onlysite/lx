@@ -155,57 +155,22 @@ function checkURL(URL) {
     }
 }
 
-var cnip = ''
+var cnip = '';
 
 function ipcn() {
     if (visibl) {
         fetch('https://myip.ipip.net')
-            .then(response => response.text())  // 获取纯文本格式
+            .then(response => response.text())
             .then(text => {
-                const tag = document.getElementById("ipcn");
-                // 解析返回的文本，提取 IP 地址和其他信息
-                const ipInfo = parseIpInfo(text);
-
-                tag.innerText = `${ipInfo.ip} ${ipInfo.country} ${ipInfo.region} ${ipInfo.city} ${ipInfo.isp}`;
-
-                if (ipInfo.ip !== cnip) {
-                    tag.style.color = '';
-                    ckip(ipInfo.ip, tag);
-                }
-                cnip = ipInfo.ip;
+                document.getElementById("ipcn").innerText = text;
             })
             .catch(error => {
                 console.error("IP 获取失败:", error);
+                document.getElementById("ipcn").innerText = "IP获取失败: " + error.message;
             });
     }
     setTimeout(ipcn, 5000);
 }
-
-// 解析返回的文本格式
-function parseIpInfo(text) {
-    const regex = /当前 IP：(\S+)  来自于：([^ ]+) ([^ ]+) ([^ ]+)  (\S+)/;
-    const match = text.match(regex);
-
-    if (match) {
-        return {
-            ip: match[1],
-            country: match[2],
-            region: match[3],
-            city: match[4],
-            isp: match[5]
-        };
-    }
-
-    return {
-        ip: '未知',
-        country: '未知',
-        region: '未知',
-        city: '未知',
-        isp: '未知'
-    };
-}
-
-
 
 function laycn() {
     if (visibl) {
