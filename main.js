@@ -159,10 +159,16 @@ var cnip = '';
 
 function ipcn() {
     if (visibl) {
-        fetch('https://myip.ipip.net')
+        fetch('http://myip.ipip.net')
             .then(response => response.text())
             .then(text => {
-                document.getElementById("ipcn").innerText = text;
+                // 格式化文本：IP和位置分行显示
+                const formattedText = text
+                    .replace("当前 IP：", "IP: ")
+                    .replace("  来自于：", "\n位置: ")
+                    .replace(/  /g, " ");  // 去除多余空格
+                
+                document.getElementById("ipcn").innerText = formattedText;
             })
             .catch(error => {
                 console.error("IP 获取失败:", error);
@@ -171,7 +177,6 @@ function ipcn() {
     }
     setTimeout(ipcn, 5000);
 }
-
 function laycn() {
     if (visibl) {
         var start_ti = new Date().getTime();
