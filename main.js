@@ -156,55 +156,29 @@ function checkURL(URL) {
 }
 
 
-let lastIPv4 = "";
-let lastIPv6 = "";
-
-async function getMyIpLaData(ipVersion = 4) {
-  try {
-    const response = await fetch(`https://api.myip.la/cn?json`, {
-      mode: 'cors',
-      method: ipVersion === 6 ? 'POST' : 'GET', // 部分环境需要POST触发IPv6
-      headers: ipVersion === 6 ? { 'X-Force-IPv6': 'true' } : {}
-    });
-    return await response.json();
-  } catch (error) {
-    console.error(`IPv${ipVersion}请求失败:`, error);
-    return null;
-  }
-}
+var gbip = ""
 
 function ipgb() {
-  if (visibl) {
-    // 并行获取双栈IP
-    Promise.all([
-      getMyIpLaData(4),
-      getMyIpLaData(6)
-    ]).then(([ipv4Data, ipv6Data]) => {
-      const tag = document.getElementById("ipgb");
-      if (!tag) return;
-
-      const currentIPv4 = ipv4Data?.ip || "未检测到IPv4";
-      const currentIPv6 = ipv6Data?.ip || "未检测到IPv6";
-      
-      // 显示结果（自动适配单栈/双栈环境）
-      tag.innerHTML = `
-        <strong>IPv4:</strong> ${currentIPv4}<br>
-        <strong>IPv6:</strong> ${currentIPv6}<br>
-        <strong>位置:</strong> ${ipv4Data?.location || ipv6Data?.location || "未知"}
-      `;
-
-      // IP变化检测（双栈独立检测）
-      if (currentIPv4 !== lastIPv4 || currentIPv6 !== lastIPv6) {
-        tag.style.color = '';
-        ckip(`${currentIPv4}|${currentIPv6}`, tag);
-      }
-      
-      lastIPv4 = currentIPv4;
-      lastIPv6 = currentIPv6;
-    });
-  }
-  setTimeout(ipgb, refresh_lay);
+    if (visibl) {
+        fetch('https://ipinfo.io/json')
+            .then(response => response.json())
+            .then(data => {
+                var tag = document.getElementById("ipgb");
+                tag.innerText = data['ip'] + ' ' + data['country'] + ' ' + data['region'] + ' ' + data['city'] + ' ' + data['hostname'];
+                
+                if (data['ip'] !== gbip) {
+                    tag.style.color = '';
+                    ckip(data['ip'], tag);
+                }
+                gbip = data['ip'];
+            })
+            .catch(error => {
+                console.error("IP 获取失败:", error);
+            });
+    }
+    setTimeout(ipgb, refresh_lay);
 }
+
 
 
 function laycn() {
